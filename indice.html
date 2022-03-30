@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"> 
+	<title>Prueba de formulario</title>
+	<script>
+	function cargarContenidoAJAX()
+	{
+	var obj_peticion=new XMLHttpRequest();
+	obj_peticion.onload=function()
+		{
+		//Ya tengo la respuesta. Hago lo que sea...
+		//alert(obj_peticion.responseText);
+		document.getElementById("contenedor").innerHTML=obj_peticion.responseText;
+		
+		}
+	obj_peticion.open("GET", "1DAM_A.txt");
+	obj_peticion.send();
+	//alert("Hola");
+	
+	
+	
+	}
+	function sobrecargar()
+	{
+	while(true)
+		{
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="contenedor"></div>
+	<input type="button" onclick="cargarContenidoAJAX()"
+	value="Mostrar">
+	<input type="button" onclick="sobrecargar()"
+	value="Sobrecargar">
+</form>
+</body>
+</html>
