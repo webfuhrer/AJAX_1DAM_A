@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"> 
+	<title>Prueba de formulario</title>
+	<script>
+	function cargarContenidoAJAX()
+	{
+	var obj_peticion=new XMLHttpRequest();
+	obj_peticion.onload=function()
+		{
+		//Ya tengo la respuesta. Hago lo que sea...
+		//alert(obj_peticion.responseText);
+		//1-Meter todo el código...
+		//2-Llamar a una funcioón
+		creaCombo(obj_peticion.responseText);
+		
+		}
+	obj_peticion.open("GET", "1DAM_A.txt");
+	obj_peticion.send();
+	//alert("Hola");
+	}
+	function creaCombo(linea_conciertos)
+	{
+	
+	var lista_conciertos=linea_conciertos.split(",");
+	/*var objeto_select=document.createElement("select");
+	for (i=0; i<lista_conciertos.length; i++)
+		{
+		var obj_option=document.createElement("option");
+		obj_option.innerText=lista_conciertos[i];
+		//obj_option.value=lista_conciertos[i]; Tentador pero incorrectao
+		obj_option.value="concierto_"+i;
+		objeto_select.appendChild(obj_option);
+		}
+	document.getElementById("contenedor").appendChild(objeto_select);*/
+	var cadena_combo="<select>";
+	for(i=0; i<lista_conciertos.length; i++)
+	{
+	cadena_combo=cadena_combo+
+	"<option value='campo_"+i+"'>"+lista_conciertos[i]+"</option>";
+	}
+	cadena_combo=cadena_combo+"</select>";
+	document.getElementById("contenedor").innerHTML=cadena_combo;
+//	alert(cadena_combo);
+	
+/*	<select>
+		<option>...</option>
+		<option>...</option>
+	</select>*/
+	
+	}
+	
+	</script>
+</head>
+<body>
+	<div id="contenedor"></div>
+	<input type="button" onclick="cargarContenidoAJAX()"
+	value="Mostrar">
+	
+</form>
+</body>
+</html>
